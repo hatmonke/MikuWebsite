@@ -1,10 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
-import Prose from "../components/Prose";
-import Minting from "../components/Minting";
 import Tokenomics from "../components/Tokenomics";
+import Team from "../components/Team";
+import Twitter from "../components/Twitter";
 import projectConfig from "../config/projectConfig";
 import NextLink from "./NextLink";
+import Chart from "../components/Chart";
+
+import Roadmap from "../components/Roadmap";
 
 import About from '../components/About';
 
@@ -43,12 +46,34 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <div className="py-48">
-      <div className="max-w-[90%] mx-auto px-4">
+      <div className="py-48"  id='Tokenomics'>
+      <div className="max-w-[90%] mx-auto px-4 -mt-14">
           <Tokenomics />
         </div>
       </div>
 
+      <div className="py-48" id='Roadmap'>
+      <div className="max-w-[90%] mx-auto px-4 -mt-14">
+          <Roadmap />
+        </div>
+      </div>
+
+      <div className="py-48">
+      <div className="max-w-[90%] mx-auto px-4">
+          <Team />
+        </div>
+      </div>
+
+      <div className="py-48">
+      <div className="max-w-[90%] mx-auto px-4">
+          <Chart />
+        </div>
+      </div>
+      <div className="py-48">
+      <div className="max-w-[90%] mx-auto px-4">
+          <Twitter />
+        </div>
+      </div>
     </>
   );
 };

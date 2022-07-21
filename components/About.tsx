@@ -4,7 +4,7 @@ export default function About() {
       <h2 className="text-6xl mb-4 text-center">ABOUT MIKU</h2>
       <div className="space-y-4 bg-black rounded-3xl bg-opacity-50 p-12">
         <div>
-          <p className="font-bold text-3xl">
+          <p className="font-bold text-base sm:text-lg lg:text-xl">
             MIKU (Ticker : $MIKU) is a token made by Hatsune Miku fans with a
             unique concept and tokenomics. with the aim of safe investment, Nft
             music, Nft art and support artists 
