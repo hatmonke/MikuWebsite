@@ -4,7 +4,12 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
 import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
-import { BrowserRouter as Router, Route, Link as RLink, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link as RLink,
+  Routes,
+} from "react-router-dom";
 import Link from "next/link";
 
 import ConnectButton from "./ConnectButton";
@@ -12,15 +17,53 @@ import Container from "./Container";
 import NextLink from "./NextLink";
 import projectConfig from "../config/projectConfig";
 import { injected } from "../utils/wallet/connectors";
-const logo = "https://i.imgur.com/kmn0Cwy.png";
 
-const ReactTooltip = dynamic(() => import("react-tooltip"), {
-  ssr: false,
-});
+import { DownOutlined } from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Dropdown, Menu, message, Space } from "antd";
+import React from "react";
+
+const onClick: MenuProps["onClick"] = ({ key }) => {
+  message.info(`Click on item ${key}`);
+};
+
+
+
+const logo = "https://i.imgur.com/kmn0Cwy.png";
 
 export default function Header() {
   const { activate, setError, account, active } = useWeb3React();
-
+  const menu = (
+    <Menu
+      items={[
+        {
+          key: '1',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://mikubsc.com/swap/">
+              Miku Swap
+            </a>
+          ),
+        },
+        {
+          key: '2',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://mikubsc.com/swap/">
+              Miku Locker
+            </a>
+          ),
+        },
+        {
+          key: '3',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://mikubsc.com/swap/">
+              Coming Soon!
+            </a>
+          ),
+          disabled: true,
+        },
+      ]}
+    />
+  );
   useEffect(() => {
     async function loadInjectedWallet() {
       const isAuthorized = await injected.isAuthorized();
@@ -37,7 +80,7 @@ export default function Header() {
 
   return (
     <div className="sticky top-0 z-50">
-      <header className="bg-black bg-opacity-50 py-8 font-['Boge']">
+      <header className="py-8 font-['Rupster']">
         <Container>
           <div className="flex justify-between items-center font-bold">
             <Link href="#" passHref>
@@ -72,20 +115,20 @@ export default function Header() {
               >
                 CHART
               </a>
-              <div className="p-2"><Link 
-                href='#Tokenomics'
-                scroll={true}
-                
-                aria-label={`Tokenomics`}
-                data-tip="Tokenomics"
-                
-                data-for="header"
-              >
-                TOKENOMICS
-              </Link></div>
-              
+              <div className="p-2">
+                <Link
+                  href="#Tokenomics"
+                  scroll={true}
+                  aria-label={`Tokenomics`}
+                  data-tip="Tokenomics"
+                  data-for="header"
+                >
+                  TOKENOMICS
+                </Link>
+              </div>
+
               <Link
-                href='#Roadmap'
+                href="#Roadmap"
                 aria-label={`Roadmap`}
                 data-tip="Roadmap"
                 data-for="header"
@@ -104,6 +147,14 @@ export default function Header() {
                 AUDIT
               </a>
             </div>
+            <Dropdown overlay={menu} placement="topLeft">
+              <a onClick={(e) => e.preventDefault()}>
+                <Space>
+                  DAPPS
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
             <div>
               {active && account ? (
                 <span className="flex font-mono w-44 items-center space-x-2 p-2 bg-gray-700 rounded-full">
@@ -121,6 +172,7 @@ export default function Header() {
                 <ConnectButton />
               )}
             </div>
+           
           </div>
         </Container>
       </header>

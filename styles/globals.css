@@ -9,13 +9,21 @@
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+    font-family: 'Rupster';
+    src: url('RupsterScriptFree.woff2') format('woff2'),
+        url('RupsterScriptFree.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 @layer base {
   h1,
   h2,
   h3 {
-    font-family: 'Boge', sans-serif;
+    font-family: 'Rupster', sans-serif;
+    color: #fff;
   }
 }
 

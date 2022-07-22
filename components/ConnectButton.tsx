@@ -34,7 +34,7 @@ export default function ConnectButton() {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center font-sans">
       {isConnecting ? (
         <button
           type="button"

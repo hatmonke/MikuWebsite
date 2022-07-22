@@ -9,7 +9,7 @@ export default function tokenomics() {
   return (
     <>
       <div className="block mx-auto">
-        <h2 className="text-3xl sm:text-6xl mb-4 text-center pb-8">The team</h2>
+        <h2 className="text-3xl sm:text-6xl mb-4 text-center pb-8 text-white">The team</h2>
       </div>
       <div className="block sm:ml-14 md:ml-28">
         <div className="grid grid-cols-1 grid-rows-6 lg:grid-cols-2 lg:grid-rows-3 xl:grid-cols-3 xl:grid-rows-2 gap-8 text-left">
@@ -25,8 +25,8 @@ export default function tokenomics() {
             <div className="flex">
               <FaPaperPlane className="mr-4 h-10 w-10" />
               <div>
-                <p className="text-2xl  font-bold">@KamadoGemCalls</p>
-                <p className="text-base">Community Manager</p>
+                <p className="text-2xl font-bold">@KamadoGemCalls</p>
+                <p className="text-base -mt-6">Community Manager</p>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@ export default function tokenomics() {
               <FaPaperPlane className="mr-4 h-10 w-10" />
               <div>
                 <p className="text-2xl  font-bold">@NobuOsamu</p>
-                <p className="text-base">Developer & Marketing</p>
+                <p className="text-base -mt-6">Developer & Marketing</p>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function tokenomics() {
               <FaPaperPlane className="mr-4 h-10 w-10" />
               <div>
                 <p className="text-2xl  font-bold">@MartinClvrd</p>
-                <p className="text-base">Head Product Development</p>
+                <p className="text-base -mt-6">Head Product Development</p>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function tokenomics() {
               <FaPaperPlane className="mr-4 h-10 w-10" />
               <div>
                 <p className="text-2xl  font-bold">@HatMonke</p>
-                <p className="text-base">Product</p>
+                <p className="text-base -mt-6">Product</p>
               </div>{" "}
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function tokenomics() {
               <FaPaperPlane className="mr-4 h-10 w-10" />
               <div>
                 <p className="text-2xl  font-bold">@Cryp_Soln</p>
-                <p className="text-base">Marketing Helper</p>
+                <p className="text-base -mt-6">Marketing Helper</p>
               </div>{" "}
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function tokenomics() {
               <FaPaperPlane className="mr-4 h-10 w-10" />
               <div>
                 <p className="text-2xl  font-bold">@DezignerCrypto</p>
-                <p className="text-base">Graphic & Designer</p>{" "}
+                <p className="text-base -mt-6">Graphic & Designer</p>{" "}
               </div>
             </div>
           </div>
