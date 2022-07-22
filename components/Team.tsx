@@ -1,5 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { FaPaperPlane } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import { EffectCoverflow, Pagination } from "swiper";
+
 
 export default function tokenomics() {
   const hatMonke = "https://i.imgur.com/3QWwgQf.jpg";
@@ -9,11 +17,26 @@ export default function tokenomics() {
   return (
     <>
       <div className="block mx-auto">
-        <h2 className="text-3xl sm:text-6xl mb-4 text-center pb-8 text-white">The team</h2>
+        <h2 className="text-3xl sm:text-6xl mb-4 text-center pb-4 text-black">The team</h2>
       </div>
-      <div className="block sm:ml-14 md:ml-28">
-        <div className="grid grid-cols-1 grid-rows-6 lg:grid-cols-2 lg:grid-rows-3 xl:grid-cols-3 xl:grid-rows-2 gap-8 text-left">
-          <div className="bg-black rounded-3xl bg-opacity-70 p-8 px-4  sm:w-80 sm:h-80">
+      <Swiper
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={"auto"}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        }}
+        pagination={true}
+        modules={[EffectCoverflow, Pagination]}
+        className="mySwiper max-w-[50vw] rounded-3xl"
+      >
+        <SwiperSlide>
+        <div className="bg-white bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={miku} />
               <img
@@ -30,7 +53,9 @@ export default function tokenomics() {
               </div>
             </div>
           </div>
-          <div className="bg-black rounded-3xl bg-opacity-70 p-8 px-4  sm:w-80 sm:h-80">
+        </SwiperSlide>
+        <SwiperSlide>
+        <div className="bg-white bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={miku} />
               <img
@@ -47,7 +72,9 @@ export default function tokenomics() {
               </div>
             </div>
           </div>
-          <div className="bg-black rounded-3xl bg-opacity-70 p-8 px-4  sm:w-80 sm:h-80">
+        </SwiperSlide>
+        <SwiperSlide>
+        <div className="bg-white bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={miku} />
               <img
@@ -64,7 +91,10 @@ export default function tokenomics() {
               </div>
             </div>
           </div>
-          <div className="bg-black rounded-3xl bg-opacity-70 p-8 px-4  sm:w-80 sm:h-80">
+        </SwiperSlide>
+        <SwiperSlide>
+          
+        <div className="bg-white bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={hatMonke} />
               <img
@@ -81,8 +111,9 @@ export default function tokenomics() {
               </div>{" "}
             </div>
           </div>
-
-          <div className="bg-black rounded-3xl bg-opacity-70 p-8 px-4  sm:w-80 sm:h-80">
+        </SwiperSlide>
+        <SwiperSlide>
+        <div className="bg-white bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={soln} />
               <img
@@ -99,8 +130,10 @@ export default function tokenomics() {
               </div>{" "}
             </div>
           </div>
+        </SwiperSlide>
+        <SwiperSlide>
 
-          <div className="bg-black rounded-3xl bg-opacity-70 p-8 px-4  sm:w-80 sm:h-80">
+        <div className="bg-white rounded-3xl bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={dezigner} />
               <img
@@ -117,8 +150,8 @@ export default function tokenomics() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </SwiperSlide>
+      </Swiper>
     </>
   );
 }

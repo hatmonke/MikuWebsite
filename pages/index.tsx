@@ -15,8 +15,8 @@ const Home: NextPage = () => {
         <Head>
           <title>{projectConfig.projectName}</title>
         </Head>
-
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/mint"
             element={
@@ -25,7 +25,6 @@ const Home: NextPage = () => {
               </Prose>
             }
           />
-          <Route path="/" element={<HomePage />} />
         </Routes>
       </Layout>
     </Router>

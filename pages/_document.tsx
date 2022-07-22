@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html style={{scrollBehavior:'smooth'}}>
         <Head />
-        <body className="bg-[url('https://i.imgur.com/DGsxCQh.jpg')] bg-center bg-cover bg-no-repeat bg-fixed text-white"> 
+        <body className=" overflow-hidden bg-[url('https://i.imgur.com/DGsxCQh.jpg')] bg-center bg-cover bg-no-repeat bg-fixed text-black"> 
           <Main />
           <NextScript />
         </body>

@@ -32,7 +32,7 @@ const Home: NextPage = () => {
         }}
         className="mySwiper"
       >
-        <SwiperSlide>
+        <SwiperSlide id="Home">
           {" "}
           <div className="hidden md:flex -mt-18">
             <div className="mx-auto">
@@ -64,40 +64,40 @@ const Home: NextPage = () => {
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="py-24" id="Tokenomics">
-            <div className="max-w-[90%] mx-auto px-4 -mt-14">
+          <div className="py-10" id="Tokenomics">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
               <Tokenomics />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="py-24" id="Roadmap">
-            <div className="max-w-[90%] mx-auto px-4 -mt-14">
+          <div className="py-10" id="Roadmap">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
               <Roadmap />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="py-24">
-            <div className="max-w-[90%] mx-auto px-4">
+          <div className="py-10">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
               <Team />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="py-24">
-            <div className="max-w-[90%] mx-auto px-4">
+          <div className="py-10">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
               <Chart />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="py-24">
-            <div className="max-w-[90%] mx-auto px-4">
+          <div className="py-10">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
               <Twitter />
             </div>
           </div>

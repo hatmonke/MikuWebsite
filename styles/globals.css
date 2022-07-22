@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Boge';
-  src: url("Boge-MV3lY.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Bellow';
+    src: url('Bellowingsky.woff2') format('woff2'),
+        url('Bellowingsky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
+
+
 @font-face {
     font-family: 'Rupster';
     src: url('RupsterScriptFree.woff2') format('woff2'),
