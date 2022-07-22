@@ -9,8 +9,8 @@ import Chart from "../components/Chart";
 import Prose from "../components/Prose";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Roadmap from "../components/Roadmap";
-
-import { Pagination } from "swiper";
+import "swiper/css/navigation";
+import { Navigation } from "swiper";
 
 import About from "../components/About";
 
@@ -26,6 +26,8 @@ const Home: NextPage = () => {
       <Swiper
         slidesPerView={"auto"}
         centeredSlides={true}
+        navigation={true}
+        modules={[Navigation]}
         spaceBetween={30}
         pagination={{
           clickable: true,
@@ -58,7 +60,16 @@ const Home: NextPage = () => {
           </div>
           <div className="flex md:hidden">
             <Prose>
-              <About />
+            <div className="mx-auto">
+              <picture>
+                <source srcSet={mikuText} />
+                <img
+                  src={mikuText}
+                  alt={projectConfig.projectName}
+                  className="max-h-[80vh]"
+                />
+              </picture>
+            </div>
             </Prose>
           </div>
         </SwiperSlide>

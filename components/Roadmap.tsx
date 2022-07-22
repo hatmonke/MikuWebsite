@@ -14,7 +14,6 @@ export default function roadmap() {
       <div className="pt-[14ch] mx-auto bg-center bg-no-repeat bg-cover h-[75ch] w-[65ch] text-center rounded-xl font-['Bellow'] bg-[url('https://i.imgur.com/WSAol03.png')]">
         {" "}
         <Swiper
-          navigation={true}
           autoHeight={true}
           direction="vertical"
           className="mySwiper swiper-v max-h-[80%] max-w-prose"

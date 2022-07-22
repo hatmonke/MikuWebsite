@@ -33,10 +33,10 @@ export default function tokenomics() {
         }}
         pagination={true}
         modules={[EffectCoverflow, Pagination]}
-        className="mySwiper max-w-[50vw] rounded-3xl"
+        className="mySwiper max-w-[70vw] sm:max-w-[60vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw] rounded-3xl"
       >
         <SwiperSlide>
-        <div className="bg-white bg-opacity-70 p-8 px-4">
+        <div className="bg-white rounded-3xl bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={miku} />
               <img
@@ -55,7 +55,7 @@ export default function tokenomics() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-        <div className="bg-white bg-opacity-70 p-8 px-4">
+        <div className="bg-white rounded-3xl bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={miku} />
               <img
@@ -74,7 +74,7 @@ export default function tokenomics() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-        <div className="bg-white bg-opacity-70 p-8 px-4">
+        <div className="bg-white rounded-3xl bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={miku} />
               <img
@@ -87,14 +87,14 @@ export default function tokenomics() {
               <FaPaperPlane className="mr-4 h-10 w-10" />
               <div>
                 <p className="text-2xl  font-bold">@MartinClvrd</p>
-                <p className="text-base -mt-6">Head Product Development</p>
+                <p className="text-base -mt-6">Head of Development</p>
               </div>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           
-        <div className="bg-white bg-opacity-70 p-8 px-4">
+        <div className="bg-white rounded-3xl bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={hatMonke} />
               <img
@@ -113,7 +113,7 @@ export default function tokenomics() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-        <div className="bg-white bg-opacity-70 p-8 px-4">
+        <div className="bg-white rounded-3xl bg-opacity-70 p-8 px-4">
             <picture>
               <source srcSet={soln} />
               <img

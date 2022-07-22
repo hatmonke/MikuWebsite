@@ -1,6 +1,5 @@
 /* eslint-disable react/no-string-refs */
 /* eslint-disable @next/next/no-img-element */
-import dynamic from "next/dynamic";
 import { useWeb3React } from "@web3-react/core";
 import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
 import {
@@ -12,12 +11,9 @@ import {
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import ConnectButton from "./ConnectButton";
-import Container from "./Container";
-import NextLink from "./NextLink";
 import projectConfig from "../config/projectConfig";
 import { injected } from "../utils/wallet/connectors";
 
-import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Menu, message, Space, Drawer } from "antd";
 const onClick: MenuProps["onClick"] = ({ key }) => {

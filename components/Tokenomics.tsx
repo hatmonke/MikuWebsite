@@ -12,15 +12,15 @@ export default function tokenomics() {
       </div>
       <div className="block  sm:ml-28">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-          <div className="bg-black rounded-3xl bg-opacity-70 p-12 px-4 w-80 h-80">
+          <div className="bg-white rounded-3xl bg-opacity-50 p-12 px-4 w-80 h-80">
             <h3 className="text-6xl mt-16 text-black">2%</h3>
             <p className="text-2xl font-bold">Liquidity Pools</p>
           </div>
-          <div className="bg-black rounded-3xl bg-opacity-70 p-12 px-4 w-80 h-80">
+          <div className="bg-white rounded-3xl bg-opacity-50 p-12 px-4 w-80 h-80">
             <h3 className="text-6xl mt-16 text-black">2%</h3>
             <p className="text-2xl font-bold">Product Development</p>
           </div>
-          <div className="bg-black rounded-3xl bg-opacity-70 p-12 px-4 w-80 h-80">
+          <div className="bg-white rounded-3xl bg-opacity-50 p-12 px-4 w-80 h-80">
             <h3 className="text-6xl mt-16 text-black">4%</h3>
             <p className="text-2xl font-bold">Marketing</p>
           </div>
