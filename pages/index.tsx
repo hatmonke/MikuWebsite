@@ -7,7 +7,7 @@ import Minting from '../components/Minting';
 import projectConfig from '../config/projectConfig';
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import HomePage from '../components/HomePage';
-
+//import Locker from '../components/Locker';
 
 
 const Home: NextPage = () => {
