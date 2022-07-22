@@ -1,14 +1,12 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
+import type { NextPage } from "next";
+import Head from "next/head";
 
-import Layout from '../components/Layout';
-import Prose from '../components/Prose';
-import Minting from '../components/Minting';
-import projectConfig from '../config/projectConfig';
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import HomePage from '../components/HomePage';
-//import Locker from '../components/Locker';
-
+import Layout from "../components/Layout";
+import Prose from "../components/Prose";
+import Minting from "../components/Minting";
+import projectConfig from "../config/projectConfig";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "../components/HomePage";
 
 const Home: NextPage = () => {
   return (
@@ -17,30 +15,18 @@ const Home: NextPage = () => {
         <Head>
           <title>{projectConfig.projectName}</title>
         </Head>
-        <div>
-          <div>
-            <div>
-              <Routes>
-                <Route
-                  path="/mint"
-                  element={
-                    <Prose>
-                      <Minting />
-                    </Prose>
-                  }
-                />
-                <Route
-                  path="/"
-                  element={
-
-                      <HomePage />
-
-                  }
-                />
-              </Routes>
-            </div>
-          </div>
-        </div>
+        <Routes>
+          <Route path="/" element={
+          <div className="mt-[12vh] sm:mt-[9vh] md:mt-[6vh] lg:mt-[3vh] xl:mt-0"><HomePage /></div>} />
+          <Route
+            path="/mint"
+            element={
+              <Prose>
+                <Minting />
+              </Prose>
+            }
+          />
+        </Routes>
       </Layout>
     </Router>
   );

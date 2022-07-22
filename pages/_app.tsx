@@ -1,4 +1,8 @@
+
 import '../styles/globals.css';
+import 'antd/dist/antd.css';
+import "swiper/css";
+import "swiper/css/pagination";
 import type { AppProps } from 'next/app';
 import { Web3ReactProvider } from '@web3-react/core';
 import { ethers } from 'ethers';

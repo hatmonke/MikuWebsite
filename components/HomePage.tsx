@@ -1,54 +1,119 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
-import Prose from "../components/Prose";
-import Minting from "../components/Minting";
 import Tokenomics from "../components/Tokenomics";
+import Team from "../components/Team";
+import Twitter from "../components/Twitter";
 import projectConfig from "../config/projectConfig";
 import NextLink from "./NextLink";
+import Chart from "../components/Chart";
+import Prose from "../components/Prose";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Roadmap from "../components/Roadmap";
+import "swiper/css/navigation";
+import { Navigation } from "swiper";
 
-import About from '../components/About';
+import About from "../components/About";
 
 const bigMiku = "https://i.imgur.com/dJ9oSPp.png";
+
+const newMiku = "https://i.imgur.com/6mqFt63.png";
+
+const mikuText = "https://i.imgur.com/5yY7Tzj.png";
 
 const Home: NextPage = () => {
   return (
     <>
-      <div className="mx-auto max-w-[90ch] text-center">
-        <picture>
-          <source srcSet={bigMiku} />
-          <img
-            src={bigMiku}
-            alt={projectConfig.projectName}
-            className="max-w-full mx-auto"
-          />
-        </picture>
-        <div className="block mx-auto pt-6 font-['Boge']">
+      <Swiper
+        slidesPerView={"auto"}
+        centeredSlides={true}
+        navigation={true}
+        modules={[Navigation]}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        className="mySwiper"
+      >
+        <SwiperSlide id="Home">
           {" "}
-          <NextLink href="https://poocoin.app/tokens/0x73419de8e3e26a17e0e6b0436e29dd04a25b061d">
-            {" "}
-            <button className="mr-7 bg-teal-700 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-xl shadow-2xl text-xl w-[130px]">CHART</button>
-            
-          </NextLink>
-          <NextLink href="https://poocoin.app/tokens/0x73419de8e3e26a17e0e6b0436e29dd04a25b061d">
-            {" "}
-            <button className="ml-7 bg-teal-700 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-xl shadow-2xl text-xl w-[130px]">BUY</button>
-            
-          </NextLink>
-        </div>
-      </div>
-
-      <div className="py-48">
-        <div className="max-w-[90%] mx-auto px-4">
-          <About />
-        </div>
-      </div>
-
-      <div className="py-48">
-      <div className="max-w-[90%] mx-auto px-4">
-          <Tokenomics />
-        </div>
-      </div>
-
+          <div className="hidden md:flex -mt-18">
+            <div className="mx-auto">
+              <picture>
+                <source srcSet={newMiku} />
+                <img
+                  src={newMiku}
+                  alt={projectConfig.projectName}
+                  className="max-h-[80vh]"
+                />
+              </picture>
+            </div>
+            <div className="mx-auto">
+              <picture>
+                <source srcSet={mikuText} />
+                <img
+                  src={mikuText}
+                  alt={projectConfig.projectName}
+                  className="max-h-[80vh]"
+                />
+              </picture>
+            </div>
+          </div>
+          <div className="flex md:hidden">
+            <Prose>
+            <div className="mx-auto">
+              <picture>
+                <source srcSet={mikuText} />
+                <img
+                  src={mikuText}
+                  alt={projectConfig.projectName}
+                  className="max-h-[80vh]"
+                />
+              </picture>
+            </div>
+            </Prose>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          {" "}
+          <div className="py-10" id="Tokenomics">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
+              <Tokenomics />
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          {" "}
+          <div className="py-10" id="Roadmap">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
+              <Roadmap />
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          {" "}
+          <div className="py-10">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
+              <Team />
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          {" "}
+          <div className="py-10">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
+              <Chart />
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          {" "}
+          <div className="py-10">
+            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
+              <Twitter />
+            </div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </>
   );
 };
