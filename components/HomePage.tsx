@@ -7,6 +7,7 @@ import projectConfig from "../config/projectConfig";
 import NextLink from "./NextLink";
 import Chart from "../components/Chart";
 import Prose from "../components/Prose";
+import NFT from "./NFTs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Roadmap from "../components/Roadmap";
 import "swiper/css/navigation";
@@ -34,49 +35,58 @@ const Home: NextPage = () => {
         }}
         className="mySwiper"
       >
-        <SwiperSlide id="Home">
-          {" "}
-          <div className="hidden md:flex -mt-18">
-            <div className="mx-auto">
-              <picture>
-                <source srcSet={newMiku} />
-                <img
-                  src={newMiku}
-                  alt={projectConfig.projectName}
-                  className="max-h-[80vh]"
-                />
-              </picture>
+        <SwiperSlide>
+          <div id="About ">
+            <div className="hidden md:flex -mt-18 py-12">
+              <div className="mx-auto">
+                <picture>
+                  <source srcSet={newMiku} />
+                  <img
+                    src={newMiku}
+                    alt={projectConfig.projectName}
+                    className="max-h-[80vh]"
+                  />
+                </picture>
+              </div>
+              <div className="mx-auto">
+                <picture>
+                  <source srcSet={mikuText} />
+                  <img
+                    src={mikuText}
+                    alt={projectConfig.projectName}
+                    className="max-h-[80vh]"
+                  />
+                </picture>
+              </div>
             </div>
-            <div className="mx-auto">
-              <picture>
-                <source srcSet={mikuText} />
-                <img
-                  src={mikuText}
-                  alt={projectConfig.projectName}
-                  className="max-h-[80vh]"
-                />
-              </picture>
+            <div className="flex md:hidden">
+              <Prose>
+                <div className="mx-auto">
+                  <picture>
+                    <source srcSet={mikuText} />
+                    <img
+                      src={mikuText}
+                      alt={projectConfig.projectName}
+                      className="max-h-[80vh]"
+                    />
+                  </picture>
+                </div>
+              </Prose>
             </div>
-          </div>
-          <div className="flex md:hidden">
-            <Prose>
-            <div className="mx-auto">
-              <picture>
-                <source srcSet={mikuText} />
-                <img
-                  src={mikuText}
-                  alt={projectConfig.projectName}
-                  className="max-h-[80vh]"
-                />
-              </picture>
-            </div>
-            </Prose>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="py-10" id="Tokenomics">
+          <div className="py-10">
             <div className="max-w-screen max-h-[90vh] mx-auto px-4">
+              <NFT />
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          {" "}
+          <div id="Tokenomics">
+            <div className="max-w-screen max-h-[100vh] mx-auto">
               <Tokenomics />
             </div>
           </div>

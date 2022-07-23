@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         </Head>
         <Routes>
           <Route path="/" element={
-          <div className="mt-[12vh] sm:mt-[9vh] md:mt-[6vh] lg:mt-[3vh] xl:mt-0"><HomePage /></div>} />
+          <div className="mt-[12vh] sm:mt-[9vh] md:mt-[6vh] lg:mt-[3vh] xl:mt-12"><HomePage /></div>} /> 
           <Route
             path="/mint"
             element={

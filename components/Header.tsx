@@ -62,9 +62,11 @@ export default function Header() {
       >
         <p>
           {" "}
-          <Link href="#Home" passHref>
+          <a
+            href="https://mikubsc.com"
+          >
             <p className="text-4xl">MIKU</p>
-          </Link>
+          </a>
         </p>
         <p>
           {" "}
@@ -102,7 +104,7 @@ export default function Header() {
             data-for="header"
             passHref
           >
-            <p style={{cursor:"pointer"}}>TOKENOMICS</p>
+            <p className="hidden lg:flex">TOKENOMICS</p>
           </Link>
         </p>
         <p>
@@ -114,7 +116,7 @@ export default function Header() {
             data-for="header"
             passHref
           >
-            <p style={{cursor:"pointer"}}>ROADMAP</p>
+            <p className="hidden lg:flex">ROADMAP</p>
           </Link>
         </p>
         <p>
@@ -154,27 +156,29 @@ export default function Header() {
         </p>
       </Drawer>
       <header className="flex justify-between font-['Rupster']">
-      <button onClick={showDrawer} className='border border-black rounded-full p-2 bg-white bg-opacity-20 text-xl justify-self-end'>
-            Open
-          </button>
-          <div>
-            {active && account ? (
-              <span className="font-bold flex font-mono w-44 items-center space-x-2 p-2 bg-gray-200 rounded-full">
-                <Jazzicon
-                  diameter={32}
-                  seed={jsNumberForAddress(account.toLowerCase())}
-                />
-                <span>
-                  {`${account.substring(0, 6)}...${account.substring(
-                    account.length - 4
-                  )}`}
-                </span>
+        <button
+          onClick={showDrawer}
+          className="border border-black rounded-full p-2 bg-white bg-opacity-20 text-xl justify-self-end"
+        >
+          Open
+        </button>
+        <div>
+          {active && account ? (
+            <span className="font-bold flex font-mono w-44 items-center space-x-2 p-2 bg-gray-200 rounded-full">
+              <Jazzicon
+                diameter={32}
+                seed={jsNumberForAddress(account.toLowerCase())}
+              />
+              <span>
+                {`${account.substring(0, 6)}...${account.substring(
+                  account.length - 4
+                )}`}
               </span>
-            ) : (
-              <ConnectButton />
-            )}
-          </div>
-
+            </span>
+          ) : (
+            <ConnectButton />
+          )}
+        </div>
       </header>
     </div>
   );
