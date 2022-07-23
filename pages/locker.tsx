@@ -1,21 +1,22 @@
 import { Row, Col, Input, Table, DatePicker,} from "antd";
-//import { SvgIcon } from "../../../common/SvgIcon";
-//import { ContentBlockProps } from "../types";
-//import { AudioOutlined } from '@ant-design/icons';
-//import { Slide } from "react-awesome-reveal";
+//import { Swiper, SwiperSlide } from "swiper/react";
+import Layout from "../components/Layout";
+import projectConfig from "../config/projectConfig";
+import Head from "next/head";
+import { FaWallet } from 'react-icons/fa';
 import Web3 from 'web3';
 import lockerABI from '../config/lockerABI.json';
 import tokenABI from '../config/tokenABI.json';
+//import { Navigation } from "swiper";
 import { Contract } from 'web3-eth-contract';
 import { AbiItem } from 'web3-utils/types'
 import { useWeb3React } from "@web3-react/core"
 import { injected } from "../supportedNetworks"
 import { Button } from "../components/Button";
 import { useRouter } from "next/router";
+import "swiper/css/navigation";
 import { useState, useEffect, SetStateAction } from 'react';
-import {
-  LeftContentSection,
-  Cimg,
+import { 
   CardWrap,
 } from "../styles/styles";
 
@@ -27,6 +28,7 @@ function Locker(){
 
   //URL Params
   const { query } = useRouter();
+  const router = useRouter();
   
   //console.log(query.token);
   //console.log(params.owner);
@@ -99,7 +101,7 @@ function Locker(){
   const [ isNetwork, setIsNetwork ] = useState(false);
   const [ isLoadingNetwork, setIsLoadingNetwork ] = useState(true);
   //Token approved check
-  const lockerAddy = "0x3c949669b2E6738F8a91C3B89c6b9989260C6770";
+  const lockerAddy = "0xbA2dc9ABAD37B095dF538Eaf9223b71D80355417";
   const connectToWeb3 = async () => {
     const lockerContract = new web3.eth.Contract(lockerABI as AbiItem[], lockerAddy);
     setContract(lockerContract);
@@ -139,25 +141,6 @@ function Locker(){
     {
       //console.log(ex);
     }
-    /*try 
-    {
-      const tokenContract = new web3.eth.Contract(tokenABI as AbiItem[], taddy);
-      const allowance = await tokenContract.methods.allowance(account,taddy).call();
-      console.log(allowance);
-      if(allowance >= 115792089237316195423570985008687907853269984665640564039457584007913129639935)
-      {
-        setIsApproved(true);
-      }
-      else
-      {
-        setIsApproved(false);
-      }
-    }catch(ex) 
-    {
-      setIsApproved(true);
-      //console.log(ex);
-    }
-    */
   }
 
   const connectToTokenV = (taddy: any) => 
@@ -267,29 +250,7 @@ function Locker(){
       {
         setIsMetamask(false);
       }
-    // @ts-ignore
-    if(web3.utils.isAddress(query.token))
-      {
-        // @ts-ignore
-        setTokenV(query.token);
-        // @ts-ignore
-        setTokenL(query.token);
-        // @ts-ignore
-        setTokenVField(query.token);
-        // @ts-ignore
-        setTokenLField(query.token);
-        // @ts-ignore
-        connectToToken(query.token);
-        connectToTokenV(query.token);
-      }
-      // @ts-ignore
-      if(web3.utils.isAddress(query.owner))
-      {
-        // @ts-ignore
-        setWallet(query.owner);
-        // @ts-ignore
-        setWalletField(query.owner);
-      }
+    
       
     const id = setInterval(() => {
       if (web3.givenProvider !== null) 
@@ -310,6 +271,34 @@ function Locker(){
   
     return () => clearInterval(id);
   }, [])
+
+  useEffect(() => {
+    if (router.asPath !== router.route) {
+      // @ts-ignore
+    if(web3.utils.isAddress(query.token))
+    {
+      // @ts-ignore
+      setTokenV(query.token);
+      // @ts-ignore
+      setTokenL(query.token);
+      // @ts-ignore
+      setTokenVField(query.token);
+      // @ts-ignore
+      setTokenLField(query.token);
+      // @ts-ignore
+      connectToToken(query.token);
+      connectToTokenV(query.token);
+    }
+    // @ts-ignore
+    if(web3.utils.isAddress(query.owner))
+    {
+      // @ts-ignore
+      setWallet(query.owner);
+      // @ts-ignore
+      setWalletField(query.owner);
+    }
+    }
+  }, [router])
 
   //Viewer
   const fetchLock = async () => 
@@ -408,51 +397,6 @@ function Locker(){
   }
 
   //Locker 
-  const lockApprove = async () => {
-    
-    if(!!tcontract)
-    {
-      
-        try{
-          await tcontract.methods.balanceOf(account).call();
-        }
-        catch(ex){
-          setIsErrorL(true);
-          setErrorLTxt('Invalid or unsupported token address.')
-          return;
-        }
-
-        /*try{
-          var _tokenallowance = await tcontract.methods.allowance(account,lockerAddy).call();
-          if(_tokenallowance => '115792089237316195423570985008687907853269984665640564039457584007913129639935')
-          {
-            setIsErrorL(true);
-            setErrorLTxt('You have already approved this token for locking.')
-            return;
-          }
-        }
-        catch(ex){
-          setIsErrorL(true);
-          setErrorLTxt('Invalid or unsupported token address.')
-          return;
-        }*/
-        
-
-        try {
-          await tcontract.methods.approve(lockerAddy,'115792089237316195423570985008687907853269984665640564039457584007913129639935').send({from:account});  
-        }catch(ex){
-          setIsErrorL(true);
-          setErrorLTxt('Invalid or unsupported token address.')
-          return;
-        } 
-        setIsErrorL(false);
-    }
-    else
-    {
-      setIsErrorL(true);
-      setErrorLTxt('You have not specified a valid token address.')
-    }
-  }
 
   const tokenLock = async () =>{
     if(!!contract && !!tcontract)
@@ -466,12 +410,7 @@ function Locker(){
         setErrorLTxt('Insert a valid date.')
         return;
       }
-      if(futureDate < Math.round(new Date().getTime()/1000))
-      {
-        setIsErrorL(true);
-        setErrorLTxt('The specified date must be in the future.')
-        return;
-      }
+      
       if(isNaN(parseInt(tAmount)))
       {
         setIsErrorL(true);
@@ -502,13 +441,25 @@ function Locker(){
         return;
       }
       
-      if(allowance >= 115792089237316195423570985008687907853269984665640564039457584007913129639935)
+      if(allowance < 115792089237316195423570985008687907853269984665640564039457584007913129639935)
       {
+        if(!!tcontract)
+        {
+          
+            try {
+              await tcontract.methods.approve(lockerAddy,'115792089237316195423570985008687907853269984665640564039457584007913129639935').send({from:account});  
+            }catch(ex){
+              setIsErrorL(true);
+              setErrorLTxt('Failed to approve tokens for locking.')
+              return;
+            } 
+            
+        }
       }
-      else
+      if(futureDate < Math.round(new Date().getTime()/1000))
       {
         setIsErrorL(true);
-        setErrorLTxt('You must approve the tokens before locking.')
+        setErrorLTxt('The specified date must be in the future.')
         return;
       }
       //this extra conditional is needed ALRIGHT?
@@ -572,24 +523,12 @@ function Locker(){
 
 
   return (
-    
-    <LeftContentSection >
+    <Layout>
+        <Head>
+          <title>{projectConfig.projectName}</title>
+        </Head>
 
-        <Row gutter={12} id='intro'>
-          <Col lg={24} md={24} sm={24} xs={24} style={{display:'flex', textAlign:'center'}}>
-          <Cimg src={"/locker.png"}  />
-          </Col>
-        </Row>
-        <Row gutter={12} id='intro' >
-        {/*<Col lg={24} md={24} sm={24} xs={24} style={{ textAlign:'center'}}>
-          <p>
-          <a href="https://scout.ech.network/address/0x3c949669b2E6738F8a91C3B89c6b9989260C6770/" target="_blank" rel="noreferrer" style={{color:"#000"}}>
-            Contract
-          </a>
-          </p>
-        </Col>*/}
-        
-        </Row>
+          <h2 className="text-6xl mb-4 text-center text-black">MikuLock</h2>
         {isMetamask ?
           <>
             {!isLoadingNetwork ?
@@ -598,55 +537,13 @@ function Locker(){
                 <>
                 {active ? 
                 <>
-                  <Row gutter={12} id="locker" style={{paddingTop:'12px'}}>
-                        <Col lg={24} md={24} sm={24} xs={24}>
-                            <CardWrap >
-                              <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:32,paddingBottom:'24px'}}>
-                                <b>Create Lock</b>
-                              </Row>
-                              {active ? 
-                              <>
-                                <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18, paddingBottom:'12px'}}>
-                                <Col>Token Address:</Col> <Col><Input onChange={handleTokenLChange} value={tokenLField} placeholder="Insert Token Address"  style={{ width: 250, backgroundColor:'#fff', borderColor:'#fff', color:'#000' }} /></Col>
-                                </Row>
-                                <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18, paddingBottom:'12px'}}>
-                                <Col>Token Amount:</Col><Col> <Input onChange={handleAmountChange} placeholder="Insert Amount to Lock"  style={{ width: 250, backgroundColor:'#fff', borderColor:'#fff', color:'#000' }} /></Col>
-                                </Row>
-                                <Row gutter={30} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18}}>
-                                <Col>Release Date: </Col><Col style={{color:"#fff"}}> <DatePicker style={{ width: 250, backgroundColor:'#fff', borderColor:'#fff', color:'#000' }} showTime onOk={onOk} /></Col>
-                                </Row>
-                                <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18, paddingTop:'24px'}}>
-     
-                                  
-                                  <Col style={{width:'120px'}}><Button onClick={lockApprove}> Approve</Button></Col>
-                                  <Col style={{width:'120px'}}><Button onClick={tokenLock}>Lock </Button></Col> 
-                                </Row>
-                                
-                                <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#122ee3', fontSize:18, paddingTop:'24px'}}>
-                                  <Col style={{color:'#122ee3'}}>{isErrorL ? <>{errorLTxt}</> : <></> }</Col>
-                                </Row>
-                              </> : 
-                              <>
-                                <Row gutter={24} style={{display:'flex', justifyContent:'center',  color:'#fff', fontSize:18, paddingBottom:'12px'}}>
-                                  <Button onClick={connect} >Connect Wallet</Button>
-                                </Row>
-                              </>
-                              }
-                              
-                              
-                              
-                              
-                              
-                            </CardWrap>
-                            
-                        </Col>
-                    </Row>
-                      <Row gutter={12} style={{paddingTop:'48px'}}>
+                <Row gutter={24} style={{display:'flex', textAlign:"center", justifyContent:'center',  fontSize:32,marginTop:"3%"}}>
+                  <h2 className="text-4xl mb-4 text-center text-black">View/Unlock Liquidity Lockers</h2>
+                            </Row>
+                      <Row gutter={12} style={{}}>
                         <Col lg={24} md={24} sm={24} xs={24} >
                             <CardWrap style={{}}>
-                            <Row gutter={24} style={{display:'flex', textAlign:"center", justifyContent:'center', color:'#fff', fontSize:32,paddingBottom:'24px'}}>
-                              <b>View/Unlock Liquidity Lockers</b>
-                            </Row>
+                            
                             {active ? 
                             <>
                               <Row onClick={handleInsertAddress} gutter={24} style={{display:'flex', justifyContent:'center',textAlign:"center", fontSize:16}}>
@@ -654,24 +551,24 @@ function Locker(){
                               </Row>
 
                             
-                            <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18, paddingBottom:'12px'}}>
+                            <Row gutter={24} style={{display:'flex', justifyContent:'center',  fontSize:18, paddingBottom:'12px'}}>
                             <Col>Wallet Address</Col> <Col><Input onChange={handleWalletChange} value={walletField} placeholder="Insert Wallet Address"  style={{ width: 250, backgroundColor:'#fff', borderColor:'#fff', color:'#000' }} /></Col>
                             </Row>
-                            <Row gutter={22} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18}}>
+                            <Row gutter={22} style={{display:'flex', justifyContent:'center',  fontSize:18}}>
                             <Col>Token Address:</Col><Col> <Input onChange={handleTokenVChange} value={tokenVField} placeholder="Insert Token Address"  style={{ width: 250, backgroundColor:'#fff', borderColor:'#fff', color:'#000' }} /></Col>
                             </Row>
-                            <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18, paddingTop:'24px'}}>
+                            <Row gutter={24} style={{display:'flex', justifyContent:'center',  fontSize:18, paddingTop:'24px'}}>
                               <Button onClick={fetchLock}>Search</Button>
                             </Row>
-                            <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18, paddingTop:'12px'}}>
+                            <Row gutter={24} style={{display:'flex', justifyContent:'center',  fontSize:18, paddingTop:'12px'}}>
                                 <Col style={{color:'#122ee3'}}>{isErrorV ? <>{errorVTxt}</> : <></> }</Col>
                             </Row>
                             <div style={{paddingTop:'12px'}}>
                               <Table columns={columns} dataSource={data} pagination={{ pageSize: 3, position:['bottomCenter']}} />
                             </div>
                             {isRef ? 
-                            <p style={{wordWrap:"break-word",  textAlign:"center", color:'#fff', fontSize:16, paddingTop:'12px'}}>
-                              Share Link: https://echoge.io/locker/{tokenV}/{wallet}
+                            <p style={{wordWrap:"break-word",  textAlign:"center",  fontSize:16, paddingTop:'12px'}}>
+                              Share Link: https://mikubsc.com/locker?token={tokenV}&owner={wallet}
                             </p>
                             :
                             <></>}
@@ -688,7 +585,7 @@ function Locker(){
                               </>
                             :
                             <>
-                              {ownerViewing ? <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#fff', fontSize:18, paddingTop:'0px'}}>
+                              {ownerViewing ? <Row gutter={24} style={{display:'flex', justifyContent:'center',  fontSize:18, paddingTop:'0px'}}>
                                 You can't unlock these tokens yet.
                                 </Row> : <></>}
                             </>
@@ -696,7 +593,7 @@ function Locker(){
                             </>
                             :
                             <>
-                              <Row gutter={24} style={{display:'flex', justifyContent:'center',  color:'#fff', fontSize:18, paddingBottom:'12px'}}>
+                              <Row gutter={24} style={{display:'flex', justifyContent:'center',   fontSize:18, paddingBottom:'12px'}}>
                                   <Button onClick={connect} >Connect Wallet</Button>
                               </Row>
                             </>
@@ -705,13 +602,57 @@ function Locker(){
                             
                         </Col>
                     </Row>
+                <Row gutter={24} style={{display:'flex', textAlign:"center", justifyContent:'center',  fontSize:32,marginTop:"3%"}}>
+                              <h2 className="text-4xl mb-4 text-center text-black">Create Lock</h2>
+                            </Row>
+                    <Row gutter={12} id="locker" style={{}}>
+                        <Col lg={24} md={24} sm={24} xs={24}>
+                            <CardWrap >
+                            
+                              {active ? 
+                              <>
+                                <Row gutter={24} style={{display:'flex', justifyContent:'center', fontSize:18, paddingBottom:'12px'}}>
+                                <Col>Token Address:</Col> <Col><Input onChange={handleTokenLChange} value={tokenLField} placeholder="Insert Token Address"  style={{ width: 250, backgroundColor:'#fff', borderColor:'#fff', color:'#000' }} /></Col>
+                                </Row>
+                                <Row gutter={24} style={{display:'flex', justifyContent:'center', fontSize:18, paddingBottom:'12px'}}>
+                                <Col>Token Amount:</Col><Col> <Input onChange={handleAmountChange} placeholder="Insert Amount to Lock"  style={{ width: 250, backgroundColor:'#fff', borderColor:'#fff', color:'#000' }} /></Col>
+                                </Row>
+                                <Row gutter={30} style={{display:'flex', justifyContent:'center', fontSize:18}}>
+                                 {/*@ts-ignore*/} 
+                                <Col>Release Date: </Col><Col style={{}}> <DatePicker style={{ width: 250, backgroundColor:'#fff', borderColor:'#fff', color:'#000' }} showTime onOk={onOk} /></Col>
+                                </Row>
+                                <Row gutter={24} style={{display:'flex', justifyContent:'center',  fontSize:18, paddingTop:'24px'}}>
+     
+                                  <Col style={{width:'120px'}}><Button onClick={tokenLock}>Lock </Button></Col> 
+                                </Row>
+                                
+                                <Row gutter={24} style={{display:'flex', justifyContent:'center', color:'#122ee3', fontSize:18, paddingTop:'24px'}}>
+                                  <Col style={{color:'#122ee3'}}>{isErrorL ? <>{errorLTxt}</> : <></> }</Col>
+                                </Row>
+                              </> : 
+                              <>
+
+                                  <Button onClick={connect} >Connect <FaWallet /> </Button>
+            
+                              </>
+                              }
+                              
+                              
+                              
+                              
+                              
+                            </CardWrap>
+                            
+                        </Col>
+                    </Row>        
+                  
                     </>
                     : 
                         <>
                         
                         <CardWrap >
-                        <Row gutter={24} style={{display:'flex', justifyContent:'center',  color:'#fff', fontSize:18, paddingBottom:'12px'}}>
-                                  <Button onClick={connect} >Connect Wallet</Button>
+                        <Row gutter={24} style={{display:'flex', justifyContent:'center',   fontSize:18, paddingBottom:'12px'}}>
+                        <Button onClick={connect} >Connect Wallet</Button>
                               </Row>
                           </CardWrap>
                         </>
@@ -720,7 +661,7 @@ function Locker(){
                     :
                     <>
                         <CardWrap >
-                        <Row gutter={24} style={{display:'flex', justifyContent:'center',  color:'#fff', fontSize:18, paddingBottom:'12px'}}>
+                        <Row gutter={24} style={{display:'flex', justifyContent:'center',   fontSize:18, paddingBottom:'12px'}}>
                         <p>
                           Wrong Network! Please switch over to the Binance Smart Chain.
                         </p>
@@ -750,12 +691,7 @@ function Locker(){
                   </CardWrap>
               </>
               }
-          
-          
-
-
-          
-    </LeftContentSection>
+      </Layout>
   );
 };
 

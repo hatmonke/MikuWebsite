@@ -2,25 +2,21 @@
 import styled from "styled-components";
 
 export const StyledButton = styled("button")<any>`
-  background: ${(p: { color: any; }) => p.color || "rgba(0,0,0,0)"};
-  color: ${(p: { color: any; }) => (p.color ? "#00ECFF" : "#00ECFF")};
+  background: ${(p: { color: any; }) => p.color || "rgb(209 213 219)"};
+  color: ${(p: { color: any; }) => (p.color ? "#000" : "#000")};
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 450;
   width: 100%;
-  border: 1px solid #00ECFF;
-  border-radius: 15px;
-  padding: 13px 0;
+  border: 2px solid rgb(107 114 128);
+  border-radius: 30px;
+  padding: 12px;
   cursor: pointer;
-  
-  margin-top: 0.625rem;
   max-width: 200px;
   transition: all 0.2s ease-in-out;
 
   &:hover{
-    color: #fff;
-    text-shadow: 0px 0px 20px #fff;
-    border: 1px solid #00ECFF;
-    background: radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,236,255,1) 100%);
+    color: #000;
+    border: 2px solid rgb(156 163 175);
   }
 `;
 
@@ -79,14 +75,20 @@ export const MinPara = styled("p")`
 `;
 
 export const CardWrap = styled("div")`
-margin:5%;
-padding:5%;
-border-radius:20px;
-border: 1px solid #fff;
-background-color: rgba(0,0,0,0.9);
-text-align:center;
-
-box-shadow: 0px 0px 25px 12px #00ECFF;
-font-size:1.2rem;
-  `;
+  margin-top:2%;
+  margin-bottom:2%;
+  margin-left:25%;
+  margin-right:25%;
+  color:#000;
+  padding:3%;
+  border-radius:20px;
+  border: 5px rgba(255,255,255,0.7);
+  background-color: rgba(255,255,255,0.7);
+  text-align:center;
+  font-size:1.2rem;
+  @media only screen and (max-width: 769px) {
+    margin-left:5%;
+    margin-right:5%;
+  }
+`;
 
