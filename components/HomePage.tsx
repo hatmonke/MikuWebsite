@@ -75,8 +75,8 @@ const Home: NextPage = () => {
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="py-10" id="Tokenomics">
-            <div className="max-w-screen max-h-[90vh] mx-auto px-4">
+          <div  id="Tokenomics">
+            <div className="max-w-screen max-h-[100vh] mx-auto">
               <Tokenomics />
             </div>
           </div>
