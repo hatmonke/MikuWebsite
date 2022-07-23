@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useWeb3React } from "@web3-react/core";
 import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
+import { useRouter } from 'next/router'
 import {
   BrowserRouter as Router,
   Route,
@@ -23,6 +24,7 @@ const onClick: MenuProps["onClick"] = ({ key }) => {
 const logo = "https://i.imgur.com/kmn0Cwy.png";
 
 export default function Header() {
+  const router = useRouter()
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
@@ -95,7 +97,7 @@ export default function Header() {
         <p>
           {" "}
           <Link
-            href="#Tokenomics"
+            href="/#Tokenomics"
             scroll={true}
             aria-label={`Tokenomics`}
             data-tip="Tokenomics"
@@ -108,7 +110,7 @@ export default function Header() {
         <p>
           {" "}
           <Link
-            href="#Roadmap"
+            href="/#Roadmap"
             aria-label={`Roadmap`}
             data-tip="Roadmap"
             data-for="header"
@@ -142,15 +144,15 @@ export default function Header() {
           </a>
         </p>
         <p>
-          {" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://mikubsc.com/swap/"
-            className="text-black"
+        <Link
+            href="/locker"
+            aria-label={`Mikulock`}
+            data-tip="Mikulock"
+            data-for="header"
+            passHref
           >
-            Miku Locker
-          </a>
+            <p style={{cursor:"pointer"}}>Miku Lock</p>
+          </Link>
         </p>
       </Drawer>
       <header className="flex justify-between font-['Rupster']">
